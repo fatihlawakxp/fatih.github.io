@@ -5,43 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fatih Website</title>
   <style>
+    /* ====== LIQUID GLASS THEME ====== */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Helvetica, Arial, sans-serif;
-      background: linear-gradient(135deg, #ccff99, #ff66cc);
-      color: #222;
+      background: linear-gradient(135deg, #ccff99, #ff66cc, #66ccff);
+      background-size: 300% 300%;
+      animation: bgMove 12s ease infinite;
+      color: #111;
       text-align: center;
+      overflow-x: hidden;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
-      padding: 20px;
-      background: rgba(255,255,255,0.6);
-      font-size: 28px;
+      padding: 25px;
+      font-size: 30px;
       font-weight: bold;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      color: #fff;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
     }
 
     .box {
-      margin: 20px auto;
-      padding: 20px;
-      width: 80%;
-      background: rgba(255,255,255,0.7);
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      margin: 25px auto;
+      padding: 25px;
+      width: 85%;
+      max-width: 700px;
+      border-radius: 25px;
+
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: floatBox 6s ease-in-out infinite;
+    }
+
+    .box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 60px rgba(0,0,0,0.35);
+    }
+
+    @keyframes floatBox {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 22px;
       border: none;
-      border-radius: 10px;
-      background: #222;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.6);
       color: white;
       cursor: pointer;
       font-size: 16px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(8px);
     }
 
     button:hover {
-      background: #ff1493;
+      background: rgba(255,20,147,0.8);
+      transform: scale(1.08);
     }
 
     .ascii {
@@ -49,19 +89,27 @@
       white-space: pre;
       font-size: 18px;
       margin-top: 15px;
+      color: #111;
+      text-shadow: 0 2px 10px rgba(255,255,255,0.5);
     }
 
     footer {
-      margin-top: 30px;
-      padding: 10px;
+      margin-top: 40px;
+      padding: 15px;
       font-size: 12px;
-      opacity: 0.7;
+      color: white;
+      opacity: 0.8;
+    }
+
+    /* smooth pop animation for text */
+    #news, #glitchText {
+      transition: all 0.4s ease;
     }
   </style>
 </head>
 <body>
 
-  <header>😂 Fatih Mini Fun Website</header>
+  <header>😂 Fatih Liquid Glass Website</header>
 
   <div class="box">
     <h2>Berita Paling Gila Hari Ini</h2>
@@ -85,30 +133,37 @@
   </div>
 
   <footer>
-    © 2026 Fatih Mini Fun Website 😂
+    © 2026 Fatih Liquid Glass Website ✨
   </footer>
 
   <script>
     const newsList = [
       "Foldmak man bersigma",
-      "iphong 18 air dilacarkan dengan ios 27",
+      "iPhong 18 air dilancarkan dengan iOS 27",
       "Roblox server crash sebab terlalu banyak noob",
-      "Fatih jumpa",
-      "masih hidup"
+      "Fatih jumpa kek pandan glitch dimension",
+      "Windows XP masih hidup dalam dunia liquid glass 😭"
     ];
 
     function randomNews() {
       const i = Math.floor(Math.random() * newsList.length);
-      document.getElementById("news").innerText = newsList[i];
+      const el = document.getElementById("news");
+      el.style.opacity = 0;
+      setTimeout(() => {
+        el.innerText = newsList[i];
+        el.style.opacity = 1;
+      }, 200);
     }
 
     function glitch() {
-      document.getElementById("glitchText").innerText =
-        "╰(°▽°)╯ GLITCH MODE AKTIF!!! SYSTEM OVERLOAD 💥💻";
-      document.body.style.transform = "rotate(" + (Math.random()*5-2.5) + "deg)";
+      const el = document.getElementById("glitchText");
+      el.innerText = "╰(°▽°)╯ GLASS GLITCH MODE AKTIF!!! 💥";
+
+      document.body.style.transform = "rotate(" + (Math.random()*4-2) + "deg)";
+
       setTimeout(() => {
         document.body.style.transform = "rotate(0deg)";
-      }, 500);
+      }, 400);
     }
   </script>
 
